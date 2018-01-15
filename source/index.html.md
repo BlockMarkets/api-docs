@@ -83,8 +83,7 @@ We also offer reference rates at 4pm GMT, 4pm EST, and zero UTC. <a href='https:
 All API responses are in JSON format. A **result** key, with a value of **success** or **error**, is returned with each request. Upon an **error**, a **message** key will provide an explanation of the error. The **server_time** key displays the datetime on the server at the time of the request. The **data** key contains the results of the request.
 
 
-
-# Market Data
+# Metadata
 
 ## Assets
 
@@ -188,6 +187,9 @@ This endpoint retrieves a list of supported asset pairs.
 Parameter | Required | Description
 --------- | -------- | ---------
 none	| |
+
+
+# Exchange Data
 
 
 
@@ -455,6 +457,7 @@ limit | No | Number of records to retrieve. The default is 100. Maximum of 1000.
 interval | No | Interval period in minutes. Maximum of 1440 (1 day).
 
 
+# Price Indexes
 
 ## Products
 
@@ -736,6 +739,7 @@ product_id | Yes | Valid product_id from /v1/products.
 since | No | Retrieves prices at or after the provided timestamp.
 limit | No | Number of records to retrieve. The default is 100. Maximum of 1000.
 interval | No | Interval period in minutes. Maximum of 1440 (1 day).
+
 
 
 
