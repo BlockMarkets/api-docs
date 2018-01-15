@@ -236,7 +236,7 @@
               </ul>
           </li>
           <li>
-            <a href="#market-data" class="toc-h1 toc-link" data-title="Market Data">Market Data</a>
+            <a href="#metadata" class="toc-h1 toc-link" data-title="Metadata">Metadata</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#assets" class="toc-h2 toc-link" data-title="Assets">Assets</a>
@@ -244,6 +244,11 @@
                   <li>
                     <a href="#asset-pairs" class="toc-h2 toc-link" data-title="Asset Pairs">Asset Pairs</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#exchange-data" class="toc-h1 toc-link" data-title="Exchange Data">Exchange Data</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#exchanges" class="toc-h2 toc-link" data-title="Exchanges">Exchanges</a>
                   </li>
@@ -259,6 +264,11 @@
                   <li>
                     <a href="#exchange-candles" class="toc-h2 toc-link" data-title="Exchange Candles">Exchange Candles</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#price-indexes" class="toc-h1 toc-link" data-title="Price Indexes">Price Indexes</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#products" class="toc-h2 toc-link" data-title="Products">Products</a>
                   </li>
@@ -351,7 +361,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 
 </span></code></pre>
 <p>All API responses are in JSON format. A <strong>result</strong> key, with a value of <strong>success</strong> or <strong>error</strong>, is returned with each request. Upon an <strong>error</strong>, a <strong>message</strong> key will provide an explanation of the error. The <strong>server_time</strong> key displays the datetime on the server at the time of the request. The <strong>data</strong> key contains the results of the request.</p>
-<h1 id='market-data'>Market Data</h1><h2 id='assets'>Assets</h2>
+<h1 id='metadata'>Metadata</h1><h2 id='assets'>Assets</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
@@ -453,7 +463,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='exchanges'>Exchanges</h2>
+<h1 id='exchange-data'>Exchange Data</h1><h2 id='exchanges'>Exchanges</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
@@ -736,7 +746,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td>Interval period in minutes. Maximum of 1440 (1 day).</td>
 </tr>
 </tbody></table>
-<h2 id='products'>Products</h2>
+<h1 id='price-indexes'>Price Indexes</h1><h2 id='products'>Products</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
