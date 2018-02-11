@@ -386,7 +386,7 @@ Parameter | Required | Description
 exchange_id | Yes | Valid exchange_id from /v1/exchanges.
 pair_id | Yes | Valid pair_id from /v1/pairs.
 since | No | Retrieves trades at or after the provided timestamp. Required format: 'YYYY-MM-DDThh:mm:ss.sssZ'
-limit | No | Number of records to retrieve. The default is 100. Maximum of 1000.
+limit | No | Number of records to retrieve. The default is 100. Maximum of 10000.
 
 
 
@@ -676,7 +676,7 @@ Parameter | Required | Description
 --------- | -------- | ---------
 product_id | Yes | Valid product_id from /v1/products.
 since | No | Retrieves trades at or after the provided timestamp. Required format: 'YYYY-MM-DDThh:mm:ss.sssZ'
-limit | No | Number of records to retrieve. The default is 100. Maximum of 1000.
+limit | No | Number of records to retrieve. The default is 100. Maximum of 10000.
 
 
 
@@ -746,50 +746,87 @@ interval | No | Interval period in minutes. Maximum of 1440 (1 day).
 
 # Websocket
 
-BlockMarkets uses <a target="_blank" href='https://www.pubnub.com/'>PubNub</a> to deliver real-time spot rates for our price index products. A premium subscription is required for this service. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.
+The BlockMarkets websocket delivers real-time streaming data to your application. A premium subscription is required for this service. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.
 
-PubNub subscribe key: `sub-c-468f918e-e108-11e7-b7e7-02872c090099`
+## Authentication
 
-You must include your `<client-api-key>` to authenticate.
+> Respone Example
 
+
+```json
+{
+	"result": "success",
+	"action": "authenticate",
+	"data": "Authentication Succeeded."
+}
+```
+
+The websocket feed is located at: 
+
+`wss://ws.blockmarkets.io`
+
+Clients must authenticate using their assigned API key:
+
+`{ "action": "authenticate", "token": "<client-api-key>" }`
 
 
 ## Subscribe
 
-> Node.js Example
+> Response Example (Price Index)
 
-```javascript
-var PubNub = require('pubnub');
-var pubnub = new PubNub({
-    subscribeKey: 'sub-c-468f918e-e108-11e7-b7e7-02872c090099',
-	authKey: <client-api-key>
-});
-pubnub.addListener({
-    message: function(data) {
-        console.log(data.channel, data.message);
-    }
-});
-pubnub.subscribe({
-    channels: ['XBTC','XETH']
-});
+```json
+{
+	"result": "success",
+	"action": "subscribe",
+	"data": {
+		"product_id": "XBTC",
+		"price": 8277.99,
+		"time": "2018-02-11T18:42.44.895Z"	
+	}
+}
 ```
 
-To subscribe to a price index, simply insert one or more product ids as channels. See the Node.js example to the right.
+> Response Example (Asset/Exchange Pair)
 
-See <a target="_blank" href='https://www.pubnub.com/docs'>PubNub Documentation</a> for other languages.
+```json
+{
+	"result": "success",
+	"action": "subscribe",
+	"data": {
+		"pair_id": "XLMBTC",
+		"exchange_id": "BNCE",
+		"price": 0.000045,
+		"amount": 62,
+		"time": "2018-02-11T19:02.15.343Z"	
+	}
+}
+```
+
+
+Clients can subscribe to receive real-time spot rates from our price indexes, and real-time transaction information (i.e. trades) for an asset pair from one or all exchanges. Please note that each subscribe request overwrites the previous subscribe request. Here are some examples.
+
+**Price index spot rates**
+
+`{ "action": "subscribe", "channels": ["XBTC", "XXLM" ] }`
+
+**Asset pair trades from all exchanges**
+
+`{ "action": "subscribe", "channels": ["BTCUSD", "XLMBTC" ] }`
+
+**Exchange pair trades**
+
+`{ "action": "subscribe", "channels": ["GDAX:BTCUSD", "KRKN:ZECUSD" ] }`
+
+**Multiple channels**
+
+`{ "action": "subscribe", "channels": ["BTCUSD", "XXLM", "GDAX:ETHUSD" ] }`
+
+
 
 
 ## Unsubscribe
 
-> Node.js Example
-
-```javascript
-pubnub.unsubscribe({
-    channels: ['XETH']
-})
-```
-
-To stop receiving updates for a product, simply unsubscribe from the channel.
+To unsubscribe from a product, send a new subscribe request excluding the product you wish to unsubscribe from. 
 
 
 
