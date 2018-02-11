@@ -290,6 +290,9 @@
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket">Websocket</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#authentication-2" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
                     <a href="#subscribe" class="toc-h2 toc-link" data-title="Subscribe">Subscribe</a>
                   </li>
                   <li>
@@ -662,7 +665,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>limit</td>
 <td>No</td>
-<td>Number of records to retrieve. The default is 100. Maximum of 1000.</td>
+<td>Number of records to retrieve. The default is 100. Maximum of 10000.</td>
 </tr>
 </tbody></table>
 <h2 id='exchange-candles'>Exchange Candles</h2>
@@ -966,7 +969,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>limit</td>
 <td>No</td>
-<td>Number of records to retrieve. The default is 100. Maximum of 1000.</td>
+<td>Number of records to retrieve. The default is 100. Maximum of 10000.</td>
 </tr>
 </tbody></table>
 <h2 id='product-candles'>Product Candles</h2>
@@ -1043,41 +1046,72 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </tbody></table>
 <h1 id='websocket'>Websocket</h1>
-<p>BlockMarkets uses <a target="_blank" href='https://www.pubnub.com/'>PubNub</a> to deliver real-time spot rates for our price index products. A premium subscription is required for this service. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.</p>
+<p>The BlockMarkets websocket delivers real-time streaming data to your application. A premium subscription is required for this service. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.</p>
+<h2 id='authentication-2'>Authentication</h2>
+<blockquote>
+<p>Respone Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authenticate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Authentication Succeeded."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The websocket feed is located at: </p>
 
-<p>PubNub subscribe key: <code>sub-c-468f918e-e108-11e7-b7e7-02872c090099</code></p>
+<p><code>wss://ws.blockmarkets.io</code></p>
 
-<p>You must include your <code>&lt;client-api-key&gt;</code> to authenticate.</p>
+<p>Clients must authenticate using their assigned API key:</p>
+
+<p><code>{ &quot;action&quot;: &quot;authenticate&quot;, &quot;token&quot;: &quot;&lt;client-api-key&gt;&quot; }</code></p>
 <h2 id='subscribe'>Subscribe</h2>
 <blockquote>
-<p>Node.js Example</p>
+<p>Response Example (Price Index)</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">PubNub</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'pubnub'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">pubnub</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PubNub</span><span class="p">({</span>
-    <span class="na">subscribeKey</span><span class="p">:</span> <span class="s1">'sub-c-468f918e-e108-11e7-b7e7-02872c090099'</span><span class="p">,</span>
-    <span class="na">authKey</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">client</span><span class="o">-</span><span class="nx">api</span><span class="o">-</span><span class="nx">key</span><span class="o">&gt;</span>
-<span class="p">});</span>
-<span class="nx">pubnub</span><span class="p">.</span><span class="nx">addListener</span><span class="p">({</span>
-    <span class="na">message</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-<span class="nx">pubnub</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">({</span>
-    <span class="na">channels</span><span class="p">:</span> <span class="p">[</span><span class="s1">'XBTC'</span><span class="p">,</span><span class="s1">'XETH'</span><span class="p">]</span>
-<span class="p">});</span>
-</code></pre>
-<p>To subscribe to a price index, simply insert one or more product ids as channels. See the Node.js example to the right.</p>
-
-<p>See <a target="_blank" href='https://www.pubnub.com/docs'>PubNub Documentation</a> for other languages.</p>
-<h2 id='unsubscribe'>Unsubscribe</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8277.99</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11T18:42.44.895Z"</span><span class="w">  
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
-<p>Node.js Example</p>
+<p>Response Example (Asset/Exchange Pair)</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">pubnub</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">({</span>
-    <span class="na">channels</span><span class="p">:</span> <span class="p">[</span><span class="s1">'XETH'</span><span class="p">]</span>
-<span class="p">})</span>
-</code></pre>
-<p>To stop receiving updates for a product, simply unsubscribe from the channel.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XLMBTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNCE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000045</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11T19:02.15.343Z"</span><span class="w">  
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Clients can subscribe to receive real-time spot rates from our price indexes, and real-time transaction information (i.e. trades) for an asset pair from one or all exchanges. Please note that each subscribe request overwrites the previous subscribe request. Here are some examples.</p>
+
+<p><strong>Price index spot rates</strong></p>
+
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;XBTC&quot;, &quot;XXLM&quot; ] }</code></p>
+
+<p><strong>Asset pair trades from all exchanges</strong></p>
+
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTCUSD&quot;, &quot;XLMBTC&quot; ] }</code></p>
+
+<p><strong>Exchange pair trades</strong></p>
+
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;GDAX:BTCUSD&quot;, &quot;KRKN:ZECUSD&quot; ] }</code></p>
+
+<p><strong>Multiple channels</strong></p>
+
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTCUSD&quot;, &quot;XXLM&quot;, &quot;GDAX:ETHUSD&quot; ] }</code></p>
+<h2 id='unsubscribe'>Unsubscribe</h2>
+<p>To unsubscribe from a product, send a new subscribe request excluding the product you wish to unsubscribe from. </p>
 <h1 id='errors'>Errors</h1>
 <p>The BlockMarkets API uses the following error codes:</p>
 
