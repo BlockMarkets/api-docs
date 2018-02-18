@@ -553,7 +553,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>exchange_id</td>
 <td>Yes</td>
-<td>Valid exchange_id from /v1/exchanges.</td>
+<td>See /v1/exchanges</td>
 </tr>
 </tbody></table>
 <h2 id='exchange-ticker'>Exchange Ticker</h2>
@@ -596,12 +596,12 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>exchange_id</td>
 <td>Yes</td>
-<td>Valid exchange_id from /v1/exchanges.</td>
+<td>See /v1/exchanges</td>
 </tr>
 <tr>
 <td>pair_id</td>
 <td>Yes</td>
-<td>Valid pair_id from /v1/pairs.</td>
+<td>See /v1/pairs</td>
 </tr>
 </tbody></table>
 <h2 id='exchange-trades'>Exchange Trades</h2>
@@ -638,7 +638,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 most recent trades.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?since,limit}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?limit,start,end}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -650,22 +650,27 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>exchange_id</td>
 <td>Yes</td>
-<td>Valid exchange_id from /v1/exchanges.</td>
+<td>See /v1/exchanges</td>
 </tr>
 <tr>
 <td>pair_id</td>
 <td>Yes</td>
-<td>Valid pair_id from /v1/pairs.</td>
-</tr>
-<tr>
-<td>since</td>
-<td>No</td>
-<td>Retrieves trades at or after the provided timestamp. Required format: &#39;YYYY-MM-DDThh:mm:ss.sssZ&#39;</td>
+<td>See /v1/pairs</td>
 </tr>
 <tr>
 <td>limit</td>
 <td>No</td>
-<td>Number of records to retrieve. The default is 100. Maximum of 10000.</td>
+<td>Number of records to retrieve (default = 100, max = 10000)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting time in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending time in ISO 8601 (or when limit is reached)</td>
 </tr>
 </tbody></table>
 <h2 id='exchange-candles'>Exchange Candles</h2>
@@ -714,7 +719,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves OHLCV history for an asset pair on a specific exchange. By default returns the most recent OHLCV values.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/candles{?since,limit,interval}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/candles{?limit,interval,start,end}</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -726,27 +731,32 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>exchange_id</td>
 <td>Yes</td>
-<td>Valid exchange_id from /v1/exchanges.</td>
+<td>See /v1/exchanges</td>
 </tr>
 <tr>
 <td>pair_id</td>
 <td>Yes</td>
-<td>Valid pair_id from /v1/pairs.</td>
-</tr>
-<tr>
-<td>since</td>
-<td>No</td>
-<td>Retrieves trades at or after the provided timestamp. Required format: &#39;YYYY-MM-DDThh:mm:ss.sssZ&#39;</td>
+<td>See /v1/pairs</td>
 </tr>
 <tr>
 <td>limit</td>
 <td>No</td>
-<td>Number of records to retrieve. The default is 100. Maximum of 1000.</td>
+<td>Number of records to retrieve (default = 100, max = 1000)</td>
 </tr>
 <tr>
 <td>interval</td>
 <td>No</td>
-<td>Interval period in minutes. Maximum of 1440 (1 day).</td>
+<td>Interval period in minutes (max = 1440)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting time in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending time in ISO 8601 (or when limit is reached)</td>
 </tr>
 </tbody></table>
 <h1 id='price-indexes'>Price Indexes</h1><h2 id='products'>Products</h2>
@@ -846,7 +856,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>product_id</td>
 <td>Yes</td>
-<td>Valid product_id from /v1/products.</td>
+<td>See /v1/products</td>
 </tr>
 </tbody></table>
 <h2 id='product-ticker-detail'>Product Ticker Detail</h2>
@@ -913,7 +923,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>product_id</td>
 <td>Yes</td>
-<td>Valid product_id from /v1/products.</td>
+<td>See /v1/products</td>
 </tr>
 </tbody></table>
 <h2 id='product-price-history'>Product Price History</h2>
@@ -947,7 +957,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves spot prices for a specific product. By default returns the 100 most recent prices.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/history{?since,limit}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/history{?limit,start,end}</code></p>
 <h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
@@ -959,17 +969,22 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>product_id</td>
 <td>Yes</td>
-<td>Valid product_id from /v1/products.</td>
-</tr>
-<tr>
-<td>since</td>
-<td>No</td>
-<td>Retrieves trades at or after the provided timestamp. Required format: &#39;YYYY-MM-DDThh:mm:ss.sssZ&#39;</td>
+<td>See /v1/products</td>
 </tr>
 <tr>
 <td>limit</td>
 <td>No</td>
-<td>Number of records to retrieve. The default is 100. Maximum of 10000.</td>
+<td>Number of records to retrieve (default = 100, max = 10000)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting time in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending time in ISO 8601 (or when limit is reached)</td>
 </tr>
 </tbody></table>
 <h2 id='product-candles'>Product Candles</h2>
@@ -1015,7 +1030,7 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </span></code></pre>
 <p>This endpoint retrieves the OHLC history for a specific product. By default returns the latest OHLC values.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/candles{?since,limit,interval}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/candles{?limit,interval,start,end}</code></p>
 <h3 id='parameters-12'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1027,22 +1042,27 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>product_id</td>
 <td>Yes</td>
-<td>Valid product_id from /v1/products.</td>
-</tr>
-<tr>
-<td>since</td>
-<td>No</td>
-<td>Retrieves prices at or after the provided timestamp.</td>
+<td>See /v1/products</td>
 </tr>
 <tr>
 <td>limit</td>
 <td>No</td>
-<td>Number of records to retrieve. The default is 100. Maximum of 1000.</td>
+<td>Number of records to retrieve (default = 100, max = 1000)</td>
 </tr>
 <tr>
 <td>interval</td>
 <td>No</td>
-<td>Interval period in minutes. Maximum of 1440 (1 day).</td>
+<td>Interval period in minutes (max = 1440)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting time in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending time in ISO 8601 (or when limit is reached)</td>
 </tr>
 </tbody></table>
 <h1 id='websocket'>Websocket</h1>
