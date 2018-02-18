@@ -282,7 +282,7 @@ This endpoint retrieves a list of asset pairs for a specific exchange.
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | Valid exchange_id from /v1/exchanges.
+exchange_id | Yes | See /v1/exchanges
 
 
 
@@ -328,10 +328,8 @@ This endpoint retrieves the ticker data for an asset pair on a specific exchange
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | Valid exchange_id from /v1/exchanges.
-pair_id | Yes | Valid pair_id from /v1/pairs.
-
-
+exchange_id | Yes | See /v1/exchanges
+pair_id | Yes | See /v1/pairs
 
 
 
@@ -377,16 +375,17 @@ This endpoint retrieves trades for an asset pair on a specific exchange. By defa
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?since,limit}`
+`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?limit,start,end}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | Valid exchange_id from /v1/exchanges.
-pair_id | Yes | Valid pair_id from /v1/pairs.
-since | No | Retrieves trades at or after the provided timestamp. Required format: 'YYYY-MM-DDThh:mm:ss.sssZ'
-limit | No | Number of records to retrieve. The default is 100. Maximum of 10000.
+exchange_id | Yes | See /v1/exchanges
+pair_id | Yes | See /v1/pairs
+limit | No | Number of records to retrieve (default = 100, max = 10000)
+start | No | Starting time in ISO 8601
+end | No | Ending time in ISO 8601 (or when limit is reached)
 
 
 
@@ -444,17 +443,18 @@ This endpoint retrieves OHLCV history for an asset pair on a specific exchange. 
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/candles{?since,limit,interval}`
+`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/candles{?limit,interval,start,end}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-exchange_id | Yes | Valid exchange_id from /v1/exchanges.
-pair_id | Yes | Valid pair_id from /v1/pairs.
-since | No | Retrieves trades at or after the provided timestamp. Required format: 'YYYY-MM-DDThh:mm:ss.sssZ'
-limit | No | Number of records to retrieve. The default is 100. Maximum of 1000.
-interval | No | Interval period in minutes. Maximum of 1440 (1 day).
+exchange_id | Yes | See /v1/exchanges
+pair_id | Yes | See /v1/pairs
+limit | No | Number of records to retrieve (default = 100, max = 1000)
+interval | No | Interval period in minutes (max = 1440)
+start | No | Starting time in ISO 8601
+end | No | Ending time in ISO 8601 (or when limit is reached)
 
 
 # Price Indexes
@@ -558,7 +558,7 @@ This endpoint retrieves the ticker data for a specific product.
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | Valid product_id from /v1/products.
+product_id | Yes | See /v1/products
 
 
 
@@ -627,7 +627,7 @@ This endpoint retrieves the ticker along with underlying exchange data for a spe
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | Valid product_id from /v1/products.
+product_id | Yes | See /v1/products
 
 
 
@@ -668,16 +668,16 @@ This endpoint retrieves spot prices for a specific product. By default returns t
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/products/{product_id}/history{?since,limit}`
+`GET https://api.blockmarkets.io/v1/products/{product_id}/history{?limit,start,end}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | Valid product_id from /v1/products.
-since | No | Retrieves trades at or after the provided timestamp. Required format: 'YYYY-MM-DDThh:mm:ss.sssZ'
-limit | No | Number of records to retrieve. The default is 100. Maximum of 10000.
-
+product_id | Yes | See /v1/products
+limit | No | Number of records to retrieve (default = 100, max = 10000)
+start | No | Starting time in ISO 8601
+end | No | Ending time in ISO 8601 (or when limit is reached)
 
 
 ## Product Candles
@@ -729,19 +729,17 @@ This endpoint retrieves the OHLC history for a specific product. By default retu
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/products/{product_id}/candles{?since,limit,interval}`
+`GET https://api.blockmarkets.io/v1/products/{product_id}/candles{?limit,interval,start,end}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | Valid product_id from /v1/products.
-since | No | Retrieves prices at or after the provided timestamp.
-limit | No | Number of records to retrieve. The default is 100. Maximum of 1000.
-interval | No | Interval period in minutes. Maximum of 1440 (1 day).
-
-
-
+product_id | Yes | See /v1/products
+limit | No | Number of records to retrieve (default = 100, max = 1000)
+interval | No | Interval period in minutes (max = 1440)
+start | No | Starting time in ISO 8601
+end | No | Ending time in ISO 8601 (or when limit is reached)
 
 
 # Websocket
@@ -827,6 +825,7 @@ Clients can subscribe to receive real-time spot rates from our price indexes, an
 ## Unsubscribe
 
 To unsubscribe from a product, send a new subscribe request excluding the product you wish to unsubscribe from. 
+
 
 
 
