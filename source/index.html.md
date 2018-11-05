@@ -1,12 +1,11 @@
 ---
-title: BlockMarkets.io API Reference
+title: BlockMarkets API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - curl
 
 toc_footers:
-  - <a href='https://www.blockmarkets.io/'>BlockMarkets.io Homepage</a>
-  - <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a>
+  - <a href='https://www.blockmarkets.io/'>BlockMarkets Website</a>
 
 includes:
   - errors
@@ -18,7 +17,7 @@ search: true
 
 Welcome to the BlockMarkets API.
 
-BlockMarkets provides real-time, institutional quality price indexes for the leading digital assets. Our system retrieves and validates millions of trades each day from the world's leading cryptocurrency exchanges to deliver robust and reliable price indexes and market data to financial firms globally.
+BlockMarkets provides real-time and historical market data from the leading global cryptocurrency exchanges, along with USD spot prices for over 100 cryptoassets that can be used for price discovery, portfolio valuation, and backtesting. We are committed to building the fastest and most reliable API for cryptocurrency pricing applications.
 
 
 ## Authentication
@@ -63,9 +62,9 @@ Timestamp arguments must also be in this format.
 
 Digital asset exchanges operate 24x7x365. 
 
-For price indexes and exchange data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.
+For USD spot prices and market pairs, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.
 
-We also offer reference rates at 4pm GMT, 4pm EST, and zero UTC. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.
+Benchmark rates are calculated at 4pm GMT, 4pm EST, and zero UTC.
 
 ## Envelope
 
@@ -74,7 +73,7 @@ We also offer reference rates at 4pm GMT, 4pm EST, and zero UTC. <a href='https:
 ```json
 {
 	"result": "success",
-	"server_time": "2017-12-22T03:27:30.965Z",
+	"server_time": "2018-10-21T01:27:30.965Z",
 	"data": [...]
 }
 
@@ -83,9 +82,9 @@ We also offer reference rates at 4pm GMT, 4pm EST, and zero UTC. <a href='https:
 All API responses are in JSON format. A **result** key, with a value of **success** or **error**, is returned with each request. Upon an **error**, a **message** key will provide an explanation of the error. The **server_time** key displays the datetime on the server at the time of the request. The **data** key contains the results of the request.
 
 
-# Metadata
+# Assets
 
-## Assets
+## Index
 
 > Request Example
 
@@ -99,31 +98,24 @@ curl "https://api.blockmarkets.io/v1/assets"
 ```json
 {
 	"result": "success",
-	"server_time": "2017-12-22T03:27:30.965Z",
+	"server_time": "2018-10-21T03:27:30.965Z",
 	"data": [
 		{
-			"asset_id": "BTC",
+			"symbol": "BTC",
 			"name": "Bitcoin",
-			"type": "crypto",
-			"website": "https://bitcoin.org/en/",
-			"start_date": "2009-01-03",
-			"max_supply": 21000000,
-			"current_supply": 16751825.5
+			"is_fiat": false
 		},
 		{
-			"asset_id": "BCH",
+			"symbol": "BCH",
 			"name": "Bitcoin Cash",
-			"type": "crypto",
-			"website": "https://www.bitcoincash.org/",
-			"start_date": "2017-08-01",
-			"max_supply": 21000000,
-			"current_supply": 16817156.75
-		}
+			"is_fiat": false
+		},
+		...
 	]
 }
 ```
 
-This endpoint retrieves a list of supported assets.
+Returns a list of supported assets.
 
 ### HTTP Request
 
@@ -136,9 +128,73 @@ Parameter | Required | Description
 none	|
 
 
+## Asset
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/assets/BTC"
+  -H "x-api-key: <client-api-key>"
+```
 
 
-## Asset Pairs
+> Response Example
+
+```json
+{
+	"result": "success",
+	"server_time": "2018-10-21T03:27:30.965Z",
+	"data": [
+		{
+			"symbol": "BTC",
+			"name": "Bitcoin",
+			"is_fiat": false,
+            "markets": {
+                "base": [
+                    {
+                        "exchange": "BNCE",
+                        "pair": "BTC-USDT"
+                    },
+                    {
+                        "exchange": "BFNX",
+                        "pair": "BTC-EUR"
+                    },
+                    ...
+                ],
+                "quote": [
+                    {
+                        "exchange": "BNCE",
+                        "pair": "ADA-BTC"
+                    },
+                    {
+                        "exchange": "BNCE",
+                        "pair": "ADX-BTC"
+                    },
+                    ...
+		}
+	]
+}
+```
+
+Returns a list of all markets (base and quote) for a specific asset.
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/assets/{symbol}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+symbol | Yes | See /v1/assets
+
+
+
+
+
+# Pairs
+
+## Index
 
 > Request Example
 
@@ -152,30 +208,41 @@ curl "https://api.blockmarkets.io/v1/pairs"
 
 ```json
 {
-	"result": "success",
-	"server_time": "2017-12-22T03:27:30.965Z",
-	"data": [
-		{
-			"pair_id": "BTCUSD",
-			"name": "BTC/USD",
-			"base_id": "BTC",
-			"base_name": "Bitcoin",
-			"quote_id": "USD",
-			"quote_name": "US Dollar"
-		},
-		{
-			"pair_id": "ETHUSD",
-			"name": "ETH/USD",
-			"base_id": "ETH",
-			"base_name": "Ethereum",
-			"quote_id": "USD",
-			"quote_name": "US Dollar"
-		}
+    "result": "success",
+    "server_time": "2018-10-21T09:29:31.959Z",
+    "data": [
+        {
+            "pair": "ABT-BTC",
+            "base": {
+                "symbol": "ABT",
+                "name": "Arcblock",
+                "is_fiat": false
+            },
+            "quote": {
+                "symbol": "BTC",
+                "name": "Bitcoin",
+                "is_fiat": false
+            }
+        },
+        {
+            "pair": "ABT-ETH",
+            "base": {
+                "symbol": "ABT",
+                "name": "Arcblock",
+                "is_fiat": false
+            },
+            "quote": {
+                "symbol": "ETH",
+                "name": "Ethereum",
+                "is_fiat": false
+            }
+        },
+        ...
 	]
 }
 ```
 
-This endpoint retrieves a list of supported asset pairs.
+Returns a list of supported asset pairs.
 
 
 ### HTTP Request
@@ -189,11 +256,77 @@ Parameter | Required | Description
 none	| |
 
 
-# Exchange Data
+
+## Pair
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/pairs/BTC-USD"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-10-21T09:32:38.832Z",
+    "data": [
+        {
+            "pair": "BTC-USD",
+            "base": {
+                "symbol": "BTC",
+                "name": "Bitcoin",
+                "is_fiat": false
+            },
+            "quote": {
+                "symbol": "USD",
+                "name": "US Dollar",
+                "is_fiat": true
+            },
+            "markets": [
+                {
+                    "exchange": "BFNX",
+                    "pair": "BTC-USD",
+                    "start_date": "2013-01-14"
+                },
+                {
+                    "exchange": "BFLY",
+                    "pair": "BTC-USD",
+                    "start_date": "2017-09-06"
+                },
+                ...
+			]
+		}
+	]
+}				
+```
+
+Returns a list of markets for a specific asset pair.
+
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/pairs/{pair}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+pair | Yes | See /v1/pairs
 
 
 
-## Exchanges
+
+
+
+
+# Exchanges
+
+
+## Index
 
 > Request Example
 
@@ -206,28 +339,29 @@ curl "https://api.blockmarkets.io/v1/exchanges"
 
 ```json
 {
-	"result": "success",
-	"server_time": "2017-12-22T03:27:30.965Z",
-	"data": [
-		{
-			"exchange_id": "BFNX",
-			"name": "Bitfinex",
-			"website": "https://www.bitfinex.com",
-			"country": "Hong Kong",
-			"country_iso": "HKG"
-		},
-		{
-			"exchange_id": "BFLY",
-			"name": "bitFlyer",
-			"website": "https://www.bitflyer.com/",
-			"country": "Japan",
-			"country_iso": "JPN"
-		}
+    "result": "success",
+    "server_time": "2018-10-21T09:36:58.347Z",
+    "data": [
+        {
+            "exchange": "BNCE",
+            "name": "Binance",
+            "website": "https://www.binance.com/",
+            "country": "Hong Kong",
+            "country_iso": "HKG"
+        },
+        {
+            "exchange": "BFNX",
+            "name": "Bitfinex",
+            "website": "https://www.bitfinex.com",
+            "country": "Hong Kong",
+            "country_iso": "HKG"
+        },
+        ...
 	]
 }
 ```
 
-This endpoint retrieves a list of supported exchanges.
+Returns a list of supported exchanges.
 
 
 ### HTTP Request
@@ -243,12 +377,12 @@ none	| |
 
 
 
-## Exchange Pairs
+## Exchange
 
 > Request Example
 
 ```curl
-curl "https://api.blockmarkets.io/v1/exchanges/GDAX"
+curl "https://api.blockmarkets.io/v1/exchanges/CPRO"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -257,259 +391,90 @@ curl "https://api.blockmarkets.io/v1/exchanges/GDAX"
 
 ```json
 {
-	"result": "success",
-	"server_time": "2017-12-22T03:27:30.965Z",
-	"data": [
-		{
-			"pair_id": "BTCUSD",
-			"name": "BTC/USD"
-		},
-		{
-			"pair_id": "ETHBTC",
-			"name": "ETH/BTC"
-		}
-	]
-}
-```
-
-This endpoint retrieves a list of asset pairs for a specific exchange.
-
-### HTTP Request
-
-`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}`
-
-### Parameters
-
-Parameter | Required | Description
---------- | -------- | ---------
-exchange_id | Yes | See /v1/exchanges
-
-
-
-
-## Exchange Ticker
-
-> Request Example
-
-```curl
-curl "https://api.blockmarkets.io/v1/exchanges/GDAX/BTCUSD"
-  -H "x-api-key: <client-api-key>"
-```
-
-
-> Response Example
-
-```json
-{
-	"result": "success",
-	"server_time": "2018-01-07T14:24:23.982Z",
-	"data": [
-		{
-			"last": 16549.99,
-			"amount": 0.008899,
-			"open_24h": 16420.01,
-			"high_24h": 17174,
-			"low_24h": 16355,
-			"vol_24h": 11631.64,
-			"time": "2018-01-07T14:24:15.553Z"
-		}
-	]
-}
-```
-
-This endpoint retrieves the ticker data for an asset pair on a specific exchange.
-
-
-### HTTP Request
-
-`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}`
-
-### Parameters
-
-Parameter | Required | Description
---------- | -------- | ---------
-exchange_id | Yes | See /v1/exchanges
-pair_id | Yes | See /v1/pairs
-
-
-
-
-## Exchange Trades
-
-> Request Example
-
-```curl
-curl "https://api.blockmarkets.io/v1/exchanges/GDAX/BTCUSD/trades"
-  -H "x-api-key: <client-api-key>"
-```
-
-
-> Response Example
-
-```json
-{
-	"result": "success",
-	"server_time": "2018-01-07T14:27:38.171Z",
-	"data": [
-		{
-			"price": 16565.79,
-			"amount": 0.05140238,
-			"time": "2018-01-07T14:27:32.329Z"
-		},
-		{
-			"price": 16565.79,
-			"amount": 0.03612889,
-			"time": "2018-01-07T14:27:23.138Z"
-		},
-		{
-			"price": 16565.78,
-			"amount": 0.1352,
-			"time": "2018-01-07T14:27:14.149Z"
-		}
-	]
-}
-```
-
-This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 most recent trades.
-
-
-### HTTP Request
-
-`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?limit,start,end}`
-
-### Parameters
-
-Parameter | Required | Description
---------- | -------- | ---------
-exchange_id | Yes | See /v1/exchanges
-pair_id | Yes | See /v1/pairs
-limit | No | Number of records to retrieve (default = 100, max = 10000)
-start | No | Starting time in ISO 8601
-end | No | Ending time in ISO 8601 (or when limit is reached)
-
-
-
-
-## Exchange Candles
-
-> Request Example
-
-```curl
-curl "https://api.blockmarkets.io/v1/exchanges/GDAX/BTCUSD/candles"
-  -H "x-api-key: <client-api-key>"
-```
-
-
-> Response Example
-
-```json
-{
-	"result": "success",
-	"server_time": "2018-01-07T14:29:07.592Z",
-	"data": [
-		{
-			"time": "2018-01-07T14:28:00.000Z",
-			"open": 16565.79,
-			"high": 16565.79,
-			"low": 16565.78,
-			"close": 16565.78,
-			"volume": 3.87739761,
-			"ticks": 15
-		},
-		{
-			"time": "2018-01-07T14:27:00.000Z",
-			"open": 16565.79,
-			"high": 16565.79,
-			"low": 16565.78,
-			"close": 16565.78,
-			"volume": 0.92360209,
-			"ticks": 9
-		},
-		{
-			"time": "2018-01-07T14:26:00.000Z",
-			"open": 16565.79,
-			"high": 16565.79,
-			"low": 16565.78,
-			"close": 16565.78,
-			"volume": 0.44495095,
-			"ticks": 7
-		}
-	]
-}
-```
-
-This endpoint retrieves OHLCV history for an asset pair on a specific exchange. By default returns the most recent OHLCV values.
-
-
-### HTTP Request
-
-`GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/candles{?limit,interval,start,end}`
-
-### Parameters
-
-Parameter | Required | Description
---------- | -------- | ---------
-exchange_id | Yes | See /v1/exchanges
-pair_id | Yes | See /v1/pairs
-limit | No | Number of records to retrieve (default = 100, max = 1000)
-interval | No | Interval period in minutes (max = 1440)
-start | No | Starting time in ISO 8601
-end | No | Ending time in ISO 8601 (or when limit is reached)
-
-
-# Price Indexes
-
-## Products
-
-> Request Example
-
-```curl
-curl "https://api.blockmarkets.io/v1/products"
-  -H "x-api-key: <client-api-key>"
-```
-
-> Response Example
-
-```json
-{
-	"result": "success",
-	"server_time": "2018-01-07T14:31:59.592Z",
-	"data": [
-		{
-			"product_id": "XBTC",
-			"name": "X-Series Bitcoin",
-			"base_id": "BTC",
-			"quote_id": "USD",
-			"quote_precision": 2,
-			"components": [
-				{
-					"exchange_id": "STMP",
-					"pair_id": "BTCUSD"
-				},
-				{
-					"exchange_id": "GDAX",
-					"pair_id": "BTCUSD"
-				},
-				{
-					"exchange_id": "GMNI",
-					"pair_id": "BTCUSD"
-				},
-				{
-					"exchange_id": "ITBT",
-					"pair_id": "BTCUSD"
-				}
+    "result": "success",
+    "server_time": "2018-10-21T09:37:57.070Z",
+    "data": [
+        {
+            "exchange": "CPRO",
+            "name": "Coinbase Pro",
+            "website": "https://pro.coinbase.com/",
+            "country": "United States",
+            "country_iso": "USA",
+            "markets": [
+                {
+                    "pair": "BCH-BTC",
+                    "start_date": "2018-01-17"
+                },
+                {
+                    "pair": "BCH-EUR",
+                    "start_date": "2018-01-24"
+                },
+                ...
 			]
 		}
 	]
 }
 ```
 
-This endpoint retrieves a list of supported price index products.
+Returns a list of markets for a specific exchange.
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/exchanges/{exchange}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+exchange | Yes | See /v1/exchanges
+
+
+
+
+
+
+
+
+# Markets
+
+
+## Index
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/markets"
+  -H "x-api-key: <client-api-key>"
+```
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-10-21T09:43:37.513Z",
+    "data": [
+        {
+            "exchange": "BFLY",
+            "pair": "ETH-BTC",
+            "start_date": "2016-04-14"
+        },
+        {
+            "exchange": "BFLY",
+            "pair": "BCH-BTC",
+            "start_date": "2017-08-02"
+        },
+        ...
+	]
+}
+```
+
+Returns a list of all supported markets.
 
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/products`
+`GET https://api.blockmarkets.io/v1/markets`
 
 ### Parameters
 
@@ -520,12 +485,12 @@ none	| |
 
 
 
-## Product Ticker
+## Market
 
 > Request Example
 
 ```curl
-curl "https://api.blockmarkets.io/v1/products/XXLM"
+curl "https://api.blockmarkets.io/v1/markets/CPRO"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -534,109 +499,54 @@ curl "https://api.blockmarkets.io/v1/products/XXLM"
 
 ```json
 {
-	"result": "success",
-	"server_time": "2018-01-07T14:38:11.737Z",
-	"data": [
-		{
-			"last": 0.720939,
-			"open_24h": 0.750739,
-			"high_24h": 0.781798,
-			"low_24h": 0.681831,
-			"time": "2018-01-07T14:38:05.265Z"
-		}
-	]
-}
-```
-
-This endpoint retrieves the ticker data for a specific product.
-
-### HTTP Request
-
-`GET https://api.blockmarkets.io/v1/products/{product_id}`
-
-### Parameters
-
-Parameter | Required | Description
---------- | -------- | ---------
-product_id | Yes | See /v1/products
-
-
-
-
-## Product Ticker Detail
-
-> Request Example
-
-```curl
-curl "https://api.blockmarkets.io/v1/products/XBTC/detail"
-  -H "x-api-key: <client-api-key>"
-```
-
-
-> Response Example
-
-```json
-{
-	"result": "success",
-	"server_time": "2018-01-07T14:42:09.472Z",
-	"data": [
-		{
-			"time": "2018-01-07T14:42:07.257Z",
-			"last": 16560.95,
-			"open_24h": 16512.19,
-			"high_24h": 17199.45,
-			"low_24h": 16367.98,
-			"trades": [
-				{
-					"exchange_id": "GDAX",
-					"pair_id": "BTCUSD",
-					"price": 16567.86,
-					"time": "2018-01-07T14:42:03.000Z"
-				},
-				{
-					"exchange_id": "GMNI",
-					"pair_id": "BTCUSD",
-					"price": 16529.99,
-					"time": "2018-01-07T14:41:57.000Z"
-				},
-				{
-					"exchange_id": "ITBT",
-					"pair_id": "BTCUSD",
-					"price": 16574.5,
-					"time": "2018-01-07T14:39:45.000Z"
-				},
-				{
-					"exchange_id": "STMP",
-					"pair_id": "BTCUSD",
-					"price": 16572.31,
-					"time": "2018-01-07T14:42:05.000Z"
-				}
+    "result": "success",
+    "server_time": "2018-10-21T09:37:57.070Z",
+    "data": [
+        {
+            "exchange": "CPRO",
+            "name": "Coinbase Pro",
+            "website": "https://pro.coinbase.com/",
+            "country": "United States",
+            "country_iso": "USA",
+            "markets": [
+                {
+                    "pair": "BCH-BTC",
+                    "start_date": "2018-01-17"
+                },
+                {
+                    "pair": "BCH-EUR",
+                    "start_date": "2018-01-24"
+                },
+                ...
 			]
 		}
 	]
 }
 ```
 
-This endpoint retrieves the ticker along with underlying exchange data for a specific product.
+Returns a list of markets for a specific exchange.
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/products/{product_id}/detail`
+`GET https://api.blockmarkets.io/v1/markets/{exchange}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | See /v1/products
+exchange | Yes | See /v1/exchanges
 
 
 
-## Product Price History
+
+
+
+## Ticker
 
 > Request Example
 
 ```curl
-curl "https://api.blockmarkets.io/v1/products/XETH/history"
+curl "https://api.blockmarkets.io/v1/markets/CPRO/BTC-USD"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -645,47 +555,45 @@ curl "https://api.blockmarkets.io/v1/products/XETH/history"
 
 ```json
 {
-	"result": "success",
-	"server_time": "2018-01-07T14:43:11.152Z",
-	"data": [
-		{
-			"time": "2018-01-07T14:43:10.885Z",
-			"price": 1073.5383
-		},
-		{
-			"time": "2018-01-07T14:43:09.883Z",
-			"price": 1073.4713
-		},
-		{
-			"time": "2018-01-07T14:43:06.877Z",
-			"price": 1073.4586
-		}
-	]
+    "result": "success",
+    "server_time": "2018-10-21T09:47:16.502Z",
+    "data": [
+        {
+            "last": 6440,
+            "amount": 0.00162387,
+            "open_24h": 6406.23,
+            "high_24h": 6452.87,
+            "low_24h": 6390.1,
+            "vol_24h": 2635.82,
+            "time": "2018-10-21T09:47:13.455Z"
+        }
+    ]
 }
 ```
 
-This endpoint retrieves spot prices for a specific product. By default returns the 100 most recent prices.
+Returns ticker for a market pair.
+
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/products/{product_id}/history{?limit,start,end}`
+`GET https://api.blockmarkets.io/v1/exchanges/{exchange}/{pair}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | See /v1/products
-limit | No | Number of records to retrieve (default = 100, max = 10000)
-start | No | Starting time in ISO 8601
-end | No | Ending time in ISO 8601 (or when limit is reached)
+exchange | Yes | See /v1/exchanges
+pair | Yes | See /v1/pairs
 
 
-## Product Candles
+
+
+## Trades
 
 > Request Example
 
 ```curl
-curl "https://api.blockmarkets.io/v1/products/XXMR/candles"
+curl "https://api.blockmarkets.io/v1/markets/CPRO/BTC-USD/trades"
   -H "x-api-key: <client-api-key>"
 ```
 
@@ -694,57 +602,325 @@ curl "https://api.blockmarkets.io/v1/products/XXMR/candles"
 
 ```json
 {
-	"result": "success",
-	"server_time": "2018-01-07T14:44:17.711Z",
-	"data": [
-		{
-			"time": "2018-01-07T14:43:00.000Z",
-			"open": 413.5381,
-			"high": 414.3311,
-			"low": 413.4792,
-			"close": 414.3311,
-			"ticks": 15
-		},
-		{
-			"time": "2018-01-07T14:42:00.000Z",
-			"open": 413.7621,
-			"high": 413.9561,
-			"low": 413.244,
-			"close": 413.244,
-			"ticks": 13
-		},
-		{
-			"time": "2018-01-07T14:41:00.000Z",
-			"open": 414.2931,
-			"high": 414.2931,
-			"low": 413.5548,
-			"close": 413.8697,
-			"ticks": 12
-		}
+    "result": "success",
+    "server_time": "2018-10-21T09:49:00.988Z",
+    "data": [
+        {
+            "tid": 52743331,
+            "price": 6439.99,
+            "amount": 0.00225,
+            "time": "2018-10-21T09:48:57.588Z",
+            "side": "s",
+            "created_at": "2018-10-21T09:48:58.563Z"
+        },
+        {
+            "tid": 52743330,
+            "price": 6440,
+            "amount": 0.00525287,
+            "time": "2018-10-21T09:48:42.619Z",
+            "side": "b",
+            "created_at": "2018-10-21T09:48:43.600Z"
+        },
+        ...
 	]
 }
 ```
 
-This endpoint retrieves the OHLC history for a specific product. By default returns the latest OHLC values.
+Returns trades for a market pair. By default returns the 100 most recent trades. Use parameters to return historical trades.
+
 
 ### HTTP Request
 
-`GET https://api.blockmarkets.io/v1/products/{product_id}/candles{?limit,interval,start,end}`
+`GET https://api.blockmarkets.io/v1/markets/{exchange}/{pair}/trades{?limit,start,end}`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | -------- | ---------
-product_id | Yes | See /v1/products
+exchange | Yes | See /v1/exchanges
+pair | Yes | See /v1/pairs
 limit | No | Number of records to retrieve (default = 100, max = 1000)
-interval | No | Interval period in minutes (max = 1440)
-start | No | Starting time in ISO 8601
-end | No | Ending time in ISO 8601 (or when limit is reached)
+start | No | Starting datetime in ISO 8601
+end | No | Ending datetime in ISO 8601 (or when limit is reached)
+
+
+
+
+## OHLCV
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/markets/CPRO/BTC-USD/ohlcv"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-11-02T19:56:47.424Z",
+    "data": [
+        {
+            "time_start": "2018-11-01T00:00:00.000Z",
+            "time_end": "2018-11-02T00:00:00.000Z",
+            "open": 6304.18,
+            "high": 6360,
+            "low": 6293.44,
+            "close": 6344,
+            "volume": 4490.97798078,
+            "vwap": 6313.475512761219,
+            "ticks": 39448
+        },
+        {
+            "time_start": "2018-10-31T00:00:00.000Z",
+            "time_end": "2018-11-01T00:00:00.000Z",
+            "open": 6267.63,
+            "high": 6353.24,
+            "low": 6201.67,
+            "close": 6304.18,
+            "volume": 5229.17300922,
+            "vwap": 6279.573836439961,
+            "ticks": 40903
+        },
+		...
+	]
+}
+```
+
+Returns OHLCV history for a market pair. By default returns the most recent daily OHLCV values. Use parameters to return historical OHLCV.
+
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/exchanges/{exchange}/{pair}/ohlcv{?limit,interval,start,end}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+exchange | Yes | See /v1/exchanges
+pair | Yes | See /v1/pairs
+limit | No | Number of records to retrieve (default = 100, max = 1000)
+interval | No | Interval period in minutes. Supported: 1, 3, 5, 15, 30, 60, 1440 (default = 1440)
+start | No | Starting datetime in ISO 8601
+end | No | Ending datetime in ISO 8601 (or when limit is reached)
+
+
+
+
+
+# Spot Rates
+
+## Index
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/rates/spot"
+  -H "x-api-key: <client-api-key>"
+```
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-11-02T21:08:20.357Z",
+    "data": [
+        {
+            "symbol": "ADA",
+            "name": "Cardano"
+        },
+        {
+            "symbol": "AE",
+            "name": "Aeternity"
+        },
+        {
+            "symbol": "AGI",
+            "name": "SingularityNET"
+        },
+        {
+            "symbol": "AION",
+            "name": "Aion"
+        },
+		...
+	]
+}
+```
+
+Returns a list of available USD spot rates.
+
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/rates/spot`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+none	| |
+
+
+
+
+## Rate
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/rates/spot/BTC"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-11-02T15:42:57.358Z",
+    "data": [
+        {
+            "last": 6391.0023,
+            "open_24h": 6331.4993,
+            "high_24h": 6422.0365,
+            "low_24h": 6325.8124,
+            "time": "2018-11-02T15:42:39.164Z"
+        }
+    ]
+}
+```
+
+Returns the last USD spot rate for an asset.
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/rates/spot/{symbol}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+symbol | Yes | See /v1/assets
+
+
+
+
+
+## History
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/rates/spot/BTC/history"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-11-02T15:43:48.482Z",
+    "data": [
+        {
+            "time": "2018-11-02T15:43:47.869Z",
+            "price": 6391.5528
+        },
+        {
+            "time": "2018-11-02T15:43:42.354Z",
+            "price": 6391.466
+        },
+        {
+            "time": "2018-11-02T15:43:41.852Z",
+            "price": 6393.0444
+        },
+		...
+	]
+}
+```
+
+Returns historical spot rates for an asset. By default returns the 100 most recent rates.
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/rates/spot/{symbol}/history{?limit,start,end}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+symbol | Yes | See /v1/assets
+limit | No | Number of records to retrieve (default = 100, max = 1000)
+start | No | Starting datetime in ISO 8601
+end | No | Ending datetime in ISO 8601 (or when limit is reached)
+
+
+## OHLCV
+
+> Request Example
+
+```curl
+curl "https://api.blockmarkets.io/v1/rates/spot/BTC/ohlcv"
+  -H "x-api-key: <client-api-key>"
+```
+
+
+> Response Example
+
+```json
+{
+    "result": "success",
+    "server_time": "2018-11-02T19:55:57.651Z",
+    "data": [
+        {
+            "time_start": "2018-11-01T00:00:00.000Z",
+            "time_end": "2018-11-02T00:00:00.000Z",
+            "open": 197.8094,
+            "high": 199.6458,
+            "low": 196.881,
+            "close": 198.8524,
+            "ticks": 67950
+        },
+        {
+            "time_start": "2018-10-31T00:00:00.000Z",
+            "time_end": "2018-11-01T00:00:00.000Z",
+            "open": 196.4452,
+            "high": 199.9528,
+            "low": 192.6163,
+            "close": 197.9165,
+            "ticks": 70366
+        },
+		...
+	]
+}
+```
+
+Returns the OHLCV history for a spot rate. By default returns the latest daily history.
+
+### HTTP Request
+
+`GET https://api.blockmarkets.io/v1/rates/spot/{symbol}/ohlcv{?limit,interval,start,end}`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | -------- | ---------
+symbol | Yes | See /v1/assets
+limit | No | Number of records to retrieve (default = 100, max = 1000)
+interval | No | Interval period in minutes. Supported: 1, 3, 5, 15, 30, 60, 1440 (default = 1440)
+start | No | Starting datetime in ISO 8601
+end | No | Ending datetime in ISO 8601 (or when limit is reached)
 
 
 # Websocket
 
-The BlockMarkets websocket delivers real-time streaming data to your application. A premium subscription is required for this service. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.
+The BlockMarkets websocket delivers real-time streaming data to your application. A premium subscription is required for this service. See our <a href='https://www.blockmarkets.io/api'>API Plans</a> for details.
 
 ## Authentication
 
@@ -770,54 +946,56 @@ Clients must authenticate using their assigned API key:
 
 ## Subscribe
 
-> Response Example (Price Index)
+> Response Example (Spot Rate)
 
 ```json
 {
 	"result": "success",
 	"action": "subscribe",
 	"data": {
-		"product_id": "XBTC",
-		"price": 8277.99,
-		"time": "2018-02-11T18:42.44.895Z"	
+		"type": "spot",
+		"symbol": "BTC",
+		"price": 6381.3241,
+		"time": "2018-11-02T22:43:42.513Z"	
 	}
 }
 ```
 
-> Response Example (Asset/Exchange Pair)
+> Response Example (Market Pair)
 
 ```json
 {
 	"result": "success",
 	"action": "subscribe",
 	"data": {
-		"pair_id": "XLMBTC",
-		"exchange_id": "BNCE",
-		"price": 0.000045,
-		"amount": 62,
-		"time": "2018-02-11T19:02.15.343Z"	
+		"type": "market",
+		"pair": "BTC-USD",
+		"exchange": "CPRO",
+		"price": 6350.01,
+		"amount": 0.00438907,
+		"time": "2018-11-02T22:44:31.555Z"	
 	}
 }
 ```
 
 
-Clients can subscribe to receive real-time spot rates from our price indexes, and real-time transaction information (i.e. trades) for an asset pair from one or all exchanges. Please note that each subscribe request overwrites the previous subscribe request. Here are some examples.
+Clients can subscribe to receive real-time spot rates, and real-time trades from exchanges. Please note that each subscribe request overwrites the previous subscribe request. Here are some examples.
 
-**Price index spot rates**
+**USD Spot Rates**
 
-`{ "action": "subscribe", "channels": ["XBTC", "XXLM" ] }`
+`{ "action": "subscribe", "channels": ["BTC", "XLM", "ETH" ] }`
 
-**Asset pair trades from all exchanges**
+**Market trades from all exchanges**
 
-`{ "action": "subscribe", "channels": ["BTCUSD", "XLMBTC" ] }`
+`{ "action": "subscribe", "channels": ["BTC-USD", "XLM-BTC" ] }`
 
-**Exchange pair trades**
+**Market pair trades**
 
-`{ "action": "subscribe", "channels": ["GDAX:BTCUSD", "KRKN:ZECUSD" ] }`
+`{ "action": "subscribe", "channels": ["CPRO:BTC-USD", "KRKN:ZEC-USD" ] }`
 
 **Multiple channels**
 
-`{ "action": "subscribe", "channels": ["BTCUSD", "XXLM", "GDAX:ETHUSD" ] }`
+`{ "action": "subscribe", "channels": ["BTC-USD", "XLM", "CPRO:ETH-USD" ] }`
 
 
 
