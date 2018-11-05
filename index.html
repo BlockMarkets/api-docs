@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>BlockMarkets.io API Reference</title>
+    <title>BlockMarkets API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -236,53 +236,72 @@
               </ul>
           </li>
           <li>
-            <a href="#metadata" class="toc-h1 toc-link" data-title="Metadata">Metadata</a>
+            <a href="#assets" class="toc-h1 toc-link" data-title="Assets">Assets</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#assets" class="toc-h2 toc-link" data-title="Assets">Assets</a>
+                    <a href="#index" class="toc-h2 toc-link" data-title="Index">Index</a>
                   </li>
                   <li>
-                    <a href="#asset-pairs" class="toc-h2 toc-link" data-title="Asset Pairs">Asset Pairs</a>
+                    <a href="#asset" class="toc-h2 toc-link" data-title="Asset">Asset</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#exchange-data" class="toc-h1 toc-link" data-title="Exchange Data">Exchange Data</a>
+            <a href="#pairs" class="toc-h1 toc-link" data-title="Pairs">Pairs</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#exchanges" class="toc-h2 toc-link" data-title="Exchanges">Exchanges</a>
+                    <a href="#index-2" class="toc-h2 toc-link" data-title="Index">Index</a>
                   </li>
                   <li>
-                    <a href="#exchange-pairs" class="toc-h2 toc-link" data-title="Exchange Pairs">Exchange Pairs</a>
-                  </li>
-                  <li>
-                    <a href="#exchange-ticker" class="toc-h2 toc-link" data-title="Exchange Ticker">Exchange Ticker</a>
-                  </li>
-                  <li>
-                    <a href="#exchange-trades" class="toc-h2 toc-link" data-title="Exchange Trades">Exchange Trades</a>
-                  </li>
-                  <li>
-                    <a href="#exchange-candles" class="toc-h2 toc-link" data-title="Exchange Candles">Exchange Candles</a>
+                    <a href="#pair" class="toc-h2 toc-link" data-title="Pair">Pair</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#price-indexes" class="toc-h1 toc-link" data-title="Price Indexes">Price Indexes</a>
+            <a href="#exchanges" class="toc-h1 toc-link" data-title="Exchanges">Exchanges</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#products" class="toc-h2 toc-link" data-title="Products">Products</a>
+                    <a href="#index-3" class="toc-h2 toc-link" data-title="Index">Index</a>
                   </li>
                   <li>
-                    <a href="#product-ticker" class="toc-h2 toc-link" data-title="Product Ticker">Product Ticker</a>
+                    <a href="#exchange" class="toc-h2 toc-link" data-title="Exchange">Exchange</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#markets" class="toc-h1 toc-link" data-title="Markets">Markets</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#index-4" class="toc-h2 toc-link" data-title="Index">Index</a>
                   </li>
                   <li>
-                    <a href="#product-ticker-detail" class="toc-h2 toc-link" data-title="Product Ticker Detail">Product Ticker Detail</a>
+                    <a href="#market" class="toc-h2 toc-link" data-title="Market">Market</a>
                   </li>
                   <li>
-                    <a href="#product-price-history" class="toc-h2 toc-link" data-title="Product Price History">Product Price History</a>
+                    <a href="#ticker" class="toc-h2 toc-link" data-title="Ticker">Ticker</a>
                   </li>
                   <li>
-                    <a href="#product-candles" class="toc-h2 toc-link" data-title="Product Candles">Product Candles</a>
+                    <a href="#trades" class="toc-h2 toc-link" data-title="Trades">Trades</a>
+                  </li>
+                  <li>
+                    <a href="#ohlcv" class="toc-h2 toc-link" data-title="OHLCV">OHLCV</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#spot-rates" class="toc-h1 toc-link" data-title="Spot Rates">Spot Rates</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#index-5" class="toc-h2 toc-link" data-title="Index">Index</a>
+                  </li>
+                  <li>
+                    <a href="#rate" class="toc-h2 toc-link" data-title="Rate">Rate</a>
+                  </li>
+                  <li>
+                    <a href="#history" class="toc-h2 toc-link" data-title="History">History</a>
+                  </li>
+                  <li>
+                    <a href="#ohlcv-2" class="toc-h2 toc-link" data-title="OHLCV">OHLCV</a>
                   </li>
               </ul>
           </li>
@@ -305,8 +324,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://www.blockmarkets.io/'>BlockMarkets.io Homepage</a></li>
-            <li><a href='https://www.blockmarkets.io/#contact-section'>Contact us</a></li>
+            <li><a href='https://www.blockmarkets.io/'>BlockMarkets Website</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -315,7 +333,7 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the BlockMarkets API.</p>
 
-<p>BlockMarkets provides real-time, institutional quality price indexes for the leading digital assets. Our system retrieves and validates millions of trades each day from the world&#39;s leading cryptocurrency exchanges to deliver robust and reliable price indexes and market data to financial firms globally.</p>
+<p>BlockMarkets provides real-time and historical market data from the leading global cryptocurrency exchanges, along with USD spot prices for over 100 cryptoassets that can be used for price discovery, portfolio valuation, and backtesting. We are committed to building the fastest and most reliable API for cryptocurrency pricing applications.</p>
 <h2 id='authentication'>Authentication</h2>
 <blockquote>
 <p>Request Syntax</p>
@@ -349,22 +367,22 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <h2 id='market-open-and-close'>Market Open and Close</h2>
 <p>Digital asset exchanges operate 24x7x365. </p>
 
-<p>For price indexes and exchange data, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.</p>
+<p>For USD spot prices and market pairs, the opening price is calculated as the first trade at or after 00:00:00 UTC. The closing price is calculated as the last trade prior to 00:00:00 UTC.</p>
 
-<p>We also offer reference rates at 4pm GMT, 4pm EST, and zero UTC. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.</p>
+<p>Benchmark rates are calculated at 4pm GMT, 4pm EST, and zero UTC.</p>
 <h2 id='envelope'>Envelope</h2>
 <blockquote>
 <p>Response Example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-22T03:27:30.965Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T01:27:30.965Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>All API responses are in JSON format. A <strong>result</strong> key, with a value of <strong>success</strong> or <strong>error</strong>, is returned with each request. Upon an <strong>error</strong>, a <strong>message</strong> key will provide an explanation of the error. The <strong>server_time</strong> key displays the datetime on the server at the time of the request. The <strong>data</strong> key contains the results of the request.</p>
-<h1 id='metadata'>Metadata</h1><h2 id='assets'>Assets</h2>
+<h1 id='assets'>Assets</h1><h2 id='index'>Index</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
@@ -376,30 +394,23 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-22T03:27:30.965Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T03:27:30.965Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"asset_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crypto"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bitcoin.org/en/"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-01-03"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"max_supply"</span><span class="p">:</span><span class="w"> </span><span class="mi">21000000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"current_supply"</span><span class="p">:</span><span class="w"> </span><span class="mf">16751825.5</span><span class="w">
+            </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"asset_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin Cash"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crypto"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bitcoincash.org/"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"max_supply"</span><span class="p">:</span><span class="w"> </span><span class="mi">21000000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"current_supply"</span><span class="p">:</span><span class="w"> </span><span class="mf">16817156.75</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of supported assets.</p>
+<p>Returns a list of supported assets.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.blockmarkets.io/v1/assets</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -416,7 +427,68 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='asset-pairs'>Asset Pairs</h2>
+<h2 id='asset'>Asset</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/assets/BTC"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T03:27:30.965Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"markets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNCE"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFNX"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-EUR"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">...</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNCE"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADA-BTC"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNCE"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADX-BTC"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">...</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of all markets (base and quote) for a specific asset.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/assets/{symbol}</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>Yes</td>
+<td>See /v1/assets</td>
+</tr>
+</tbody></table>
+<h1 id='pairs'>Pairs</h1><h2 id='index-2'>Index</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
@@ -428,78 +500,41 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-22T03:27:30.965Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:29:31.959Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="w">
+            </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABT-BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arcblock"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABT-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arcblock"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of supported asset pairs.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/pairs</code></p>
-<h3 id='parameters-2'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>none</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id='exchange-data'>Exchange Data</h1><h2 id='exchanges'>Exchanges</h2>
-<blockquote>
-<p>Request Example</p>
-</blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges"
-  -H "x-api-key: &lt;client-api-key&gt;"
-</code></pre>
-<blockquote>
-<p>Response Example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-22T03:27:30.965Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFNX"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitfinex"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bitfinex.com"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hong Kong"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"country_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HKG"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFLY"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitFlyer"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bitflyer.com/"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Japan"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"country_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JPN"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a list of supported exchanges.</p>
+<p>Returns a list of supported asset pairs.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/pairs</code></p>
 <h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
@@ -514,11 +549,11 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='exchange-pairs'>Exchange Pairs</h2>
+<h2 id='pair'>Pair</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges/GDAX"
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/pairs/BTC-USD"
   -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -526,22 +561,40 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-22T03:27:30.965Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:32:38.832Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USD"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHBTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH/BTC"</span><span class="w">
+            </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US Dollar"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_fiat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"markets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFNX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-14"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFLY"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-06"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="err">...</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">               
 </span></code></pre>
-<p>This endpoint retrieves a list of asset pairs for a specific exchange.</p>
+<p>Returns a list of markets for a specific asset pair.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/pairs/{pair}</code></p>
 <h3 id='parameters-4'>Parameters</h3>
 <table><thead>
 <tr>
@@ -551,16 +604,16 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>exchange_id</td>
+<td>pair</td>
 <td>Yes</td>
-<td>See /v1/exchanges</td>
+<td>See /v1/pairs</td>
 </tr>
 </tbody></table>
-<h2 id='exchange-ticker'>Exchange Ticker</h2>
+<h1 id='exchanges'>Exchanges</h1><h2 id='index-3'>Index</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges/GDAX/BTCUSD"
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges"
   -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -568,243 +621,30 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:24:23.982Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:36:58.347Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">16549.99</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.008899</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">16420.01</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high_24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">17174</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low_24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">16355</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"vol_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">11631.64</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:24:15.553Z"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNCE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.binance.com/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hong Kong"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HKG"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFNX"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitfinex"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bitfinex.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hong Kong"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HKG"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves the ticker data for an asset pair on a specific exchange.</p>
+<p>Returns a list of supported exchanges.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/exchanges</code></p>
 <h3 id='parameters-5'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>exchange_id</td>
-<td>Yes</td>
-<td>See /v1/exchanges</td>
-</tr>
-<tr>
-<td>pair_id</td>
-<td>Yes</td>
-<td>See /v1/pairs</td>
-</tr>
-</tbody></table>
-<h2 id='exchange-trades'>Exchange Trades</h2>
-<blockquote>
-<p>Request Example</p>
-</blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges/GDAX/BTCUSD/trades"
-  -H "x-api-key: &lt;client-api-key&gt;"
-</code></pre>
-<blockquote>
-<p>Response Example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:38.171Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05140238</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:32.329Z"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03612889</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:23.138Z"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1352</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:14.149Z"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves trades for an asset pair on a specific exchange. By default returns the 100 most recent trades.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/trades{?limit,start,end}</code></p>
-<h3 id='parameters-6'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>exchange_id</td>
-<td>Yes</td>
-<td>See /v1/exchanges</td>
-</tr>
-<tr>
-<td>pair_id</td>
-<td>Yes</td>
-<td>See /v1/pairs</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>No</td>
-<td>Number of records to retrieve (default = 100, max = 10000)</td>
-</tr>
-<tr>
-<td>start</td>
-<td>No</td>
-<td>Starting time in ISO 8601</td>
-</tr>
-<tr>
-<td>end</td>
-<td>No</td>
-<td>Ending time in ISO 8601 (or when limit is reached)</td>
-</tr>
-</tbody></table>
-<h2 id='exchange-candles'>Exchange Candles</h2>
-<blockquote>
-<p>Request Example</p>
-</blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges/GDAX/BTCUSD/candles"
-  -H "x-api-key: &lt;client-api-key&gt;"
-</code></pre>
-<blockquote>
-<p>Response Example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:29:07.592Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:28:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.87739761</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:27:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92360209</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:26:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">16565.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.44495095</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves OHLCV history for an asset pair on a specific exchange. By default returns the most recent OHLCV values.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange_id}/{pair_id}/candles{?limit,interval,start,end}</code></p>
-<h3 id='parameters-7'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>exchange_id</td>
-<td>Yes</td>
-<td>See /v1/exchanges</td>
-</tr>
-<tr>
-<td>pair_id</td>
-<td>Yes</td>
-<td>See /v1/pairs</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>No</td>
-<td>Number of records to retrieve (default = 100, max = 1000)</td>
-</tr>
-<tr>
-<td>interval</td>
-<td>No</td>
-<td>Interval period in minutes (max = 1440)</td>
-</tr>
-<tr>
-<td>start</td>
-<td>No</td>
-<td>Starting time in ISO 8601</td>
-</tr>
-<tr>
-<td>end</td>
-<td>No</td>
-<td>Ending time in ISO 8601 (or when limit is reached)</td>
-</tr>
-</tbody></table>
-<h1 id='price-indexes'>Price Indexes</h1><h2 id='products'>Products</h2>
-<blockquote>
-<p>Request Example</p>
-</blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/products"
-  -H "x-api-key: &lt;client-api-key&gt;"
-</code></pre>
-<blockquote>
-<p>Response Example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:31:59.592Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X-Series Bitcoin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"base_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"quote_precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STMP"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GDAX"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GMNI"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITBT"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a list of supported price index products.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products</code></p>
-<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -818,11 +658,11 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='product-ticker'>Product Ticker</h2>
+<h2 id='exchange'>Exchange</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/products/XXLM"
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/exchanges/CPRO"
   -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -830,21 +670,172 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:38:11.737Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:37:57.070Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.720939</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.750739</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.781798</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.681831</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:38:05.265Z"</span><span class="w">
+            </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPRO"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coinbase Pro"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pro.coinbase.com/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"markets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH-BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH-EUR"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-24"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="err">...</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves the ticker data for a specific product.</p>
+<p>Returns a list of markets for a specific exchange.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange}</code></p>
+<h3 id='parameters-6'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>exchange</td>
+<td>Yes</td>
+<td>See /v1/exchanges</td>
+</tr>
+</tbody></table>
+<h1 id='markets'>Markets</h1><h2 id='index-4'>Index</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/markets"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:43:37.513Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFLY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-14"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BFLY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH-BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-02"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of all supported markets.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/markets</code></p>
+<h3 id='parameters-7'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='market'>Market</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/markets/CPRO"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:37:57.070Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPRO"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coinbase Pro"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pro.coinbase.com/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country_iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"markets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH-BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-17"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH-EUR"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-24"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="err">...</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of markets for a specific exchange.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/markets/{exchange}</code></p>
+<h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>exchange</td>
+<td>Yes</td>
+<td>See /v1/exchanges</td>
+</tr>
+</tbody></table>
+<h2 id='ticker'>Ticker</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/markets/CPRO/BTC-USD"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:47:16.502Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mi">6440</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00162387</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">6406.23</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">6452.87</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">6390.1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">2635.82</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:47:13.455Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns ticker for a market pair.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange}/{pair}</code></p>
 <h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
@@ -854,16 +845,21 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>product_id</td>
+<td>exchange</td>
 <td>Yes</td>
-<td>See /v1/products</td>
+<td>See /v1/exchanges</td>
+</tr>
+<tr>
+<td>pair</td>
+<td>Yes</td>
+<td>See /v1/pairs</td>
 </tr>
 </tbody></table>
-<h2 id='product-ticker-detail'>Product Ticker Detail</h2>
+<h2 id='trades'>Trades</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/products/XBTC/detail"
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/markets/CPRO/BTC-USD/trades"
   -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -871,47 +867,31 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:42:09.472Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:49:00.988Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:42:07.257Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">16560.95</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">16512.19</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">17199.45</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">16367.98</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GDAX"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16567.86</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:42:03.000Z"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GMNI"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16529.99</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:41:57.000Z"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITBT"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16574.5</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:39:45.000Z"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STMP"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16572.31</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:42:05.000Z"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="mi">52743331</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6439.99</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00225</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:48:57.588Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:48:58.563Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tid"</span><span class="p">:</span><span class="w"> </span><span class="mi">52743330</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">6440</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00525287</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:48:42.619Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-21T09:48:43.600Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves the ticker along with underlying exchange data for a specific product.</p>
+<p>Returns trades for a market pair. By default returns the 100 most recent trades. Use parameters to return historical trades.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/detail</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/markets/{exchange}/{pair}/trades{?limit,start,end}</code></p>
 <h3 id='parameters-10'>Parameters</h3>
 <table><thead>
 <tr>
@@ -921,16 +901,36 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>product_id</td>
+<td>exchange</td>
 <td>Yes</td>
-<td>See /v1/products</td>
+<td>See /v1/exchanges</td>
+</tr>
+<tr>
+<td>pair</td>
+<td>Yes</td>
+<td>See /v1/pairs</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>No</td>
+<td>Number of records to retrieve (default = 100, max = 1000)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting datetime in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending datetime in ISO 8601 (or when limit is reached)</td>
 </tr>
 </tbody></table>
-<h2 id='product-price-history'>Product Price History</h2>
+<h2 id='ohlcv'>OHLCV</h2>
 <blockquote>
 <p>Request Example</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/products/XETH/history"
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/markets/CPRO/BTC-USD/ohlcv"
   -H "x-api-key: &lt;client-api-key&gt;"
 </code></pre>
 <blockquote>
@@ -938,26 +938,37 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:43:11.152Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T19:56:47.424Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:43:10.885Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1073.5383</span><span class="w">
+            </span><span class="s2">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">6304.18</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">6360</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">6293.44</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">6344</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">4490.97798078</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vwap"</span><span class="p">:</span><span class="w"> </span><span class="mf">6313.475512761219</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">39448</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:43:09.883Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1073.4713</span><span class="w">
+            </span><span class="s2">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-31T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">6267.63</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">6353.24</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">6201.67</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">6304.18</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">5229.17300922</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vwap"</span><span class="p">:</span><span class="w"> </span><span class="mf">6279.573836439961</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">40903</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:43:06.877Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1073.4586</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves spot prices for a specific product. By default returns the 100 most recent prices.</p>
+<p>Returns OHLCV history for a market pair. By default returns the most recent daily OHLCV values. Use parameters to return historical OHLCV.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/history{?limit,start,end}</code></p>
+<p><code>GET https://api.blockmarkets.io/v1/exchanges/{exchange}/{pair}/ohlcv{?limit,interval,start,end}</code></p>
 <h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
@@ -967,82 +978,14 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>product_id</td>
+<td>exchange</td>
 <td>Yes</td>
-<td>See /v1/products</td>
+<td>See /v1/exchanges</td>
 </tr>
 <tr>
-<td>limit</td>
-<td>No</td>
-<td>Number of records to retrieve (default = 100, max = 10000)</td>
-</tr>
-<tr>
-<td>start</td>
-<td>No</td>
-<td>Starting time in ISO 8601</td>
-</tr>
-<tr>
-<td>end</td>
-<td>No</td>
-<td>Ending time in ISO 8601 (or when limit is reached)</td>
-</tr>
-</tbody></table>
-<h2 id='product-candles'>Product Candles</h2>
-<blockquote>
-<p>Request Example</p>
-</blockquote>
-<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/products/XXMR/candles"
-  -H "x-api-key: &lt;client-api-key&gt;"
-</code></pre>
-<blockquote>
-<p>Response Example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:44:17.711Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:43:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.5381</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">414.3311</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.4792</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">414.3311</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:42:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.7621</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.9561</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.244</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.244</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T14:41:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">414.2931</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">414.2931</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.5548</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">413.8697</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves the OHLC history for a specific product. By default returns the latest OHLC values.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
-<p><code>GET https://api.blockmarkets.io/v1/products/{product_id}/candles{?limit,interval,start,end}</code></p>
-<h3 id='parameters-12'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>product_id</td>
+<td>pair</td>
 <td>Yes</td>
-<td>See /v1/products</td>
+<td>See /v1/pairs</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1052,21 +995,248 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <tr>
 <td>interval</td>
 <td>No</td>
-<td>Interval period in minutes (max = 1440)</td>
+<td>Interval period in minutes. Supported: 1, 3, 5, 15, 30, 60, 1440 (default = 1440)</td>
 </tr>
 <tr>
 <td>start</td>
 <td>No</td>
-<td>Starting time in ISO 8601</td>
+<td>Starting datetime in ISO 8601</td>
 </tr>
 <tr>
 <td>end</td>
 <td>No</td>
-<td>Ending time in ISO 8601 (or when limit is reached)</td>
+<td>Ending datetime in ISO 8601 (or when limit is reached)</td>
+</tr>
+</tbody></table>
+<h1 id='spot-rates'>Spot Rates</h1><h2 id='index-5'>Index</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/rates/spot"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T21:08:20.357Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardano"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aeternity"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGI"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SingularityNET"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AION"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aion"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of available USD spot rates.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/rates/spot</code></p>
+<h3 id='parameters-12'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='rate'>Rate</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/rates/spot/BTC"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T15:42:57.358Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">6391.0023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">6331.4993</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">6422.0365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low_24h"</span><span class="p">:</span><span class="w"> </span><span class="mf">6325.8124</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T15:42:39.164Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the last USD spot rate for an asset.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/rates/spot/{symbol}</code></p>
+<h3 id='parameters-13'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>Yes</td>
+<td>See /v1/assets</td>
+</tr>
+</tbody></table>
+<h2 id='history'>History</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/rates/spot/BTC/history"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T15:43:48.482Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T15:43:47.869Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6391.5528</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T15:43:42.354Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6391.466</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T15:43:41.852Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6393.0444</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns historical spot rates for an asset. By default returns the 100 most recent rates.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/rates/spot/{symbol}/history{?limit,start,end}</code></p>
+<h3 id='parameters-14'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>Yes</td>
+<td>See /v1/assets</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>No</td>
+<td>Number of records to retrieve (default = 100, max = 1000)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting datetime in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending datetime in ISO 8601 (or when limit is reached)</td>
+</tr>
+</tbody></table>
+<h2 id='ohlcv-2'>OHLCV</h2>
+<blockquote>
+<p>Request Example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl "https://api.blockmarkets.io/v1/rates/spot/BTC/ohlcv"
+  -H "x-api-key: &lt;client-api-key&gt;"
+</code></pre>
+<blockquote>
+<p>Response Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"server_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T19:55:57.651Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">197.8094</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">199.6458</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">196.881</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">198.8524</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">67950</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-31T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">196.4452</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">199.9528</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">192.6163</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">197.9165</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">70366</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the OHLCV history for a spot rate. By default returns the latest daily history.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET https://api.blockmarkets.io/v1/rates/spot/{symbol}/ohlcv{?limit,interval,start,end}</code></p>
+<h3 id='parameters-15'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>Yes</td>
+<td>See /v1/assets</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>No</td>
+<td>Number of records to retrieve (default = 100, max = 1000)</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>No</td>
+<td>Interval period in minutes. Supported: 1, 3, 5, 15, 30, 60, 1440 (default = 1440)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>No</td>
+<td>Starting datetime in ISO 8601</td>
+</tr>
+<tr>
+<td>end</td>
+<td>No</td>
+<td>Ending datetime in ISO 8601 (or when limit is reached)</td>
 </tr>
 </tbody></table>
 <h1 id='websocket'>Websocket</h1>
-<p>The BlockMarkets websocket delivers real-time streaming data to your application. A premium subscription is required for this service. <a href='https://www.blockmarkets.io/#contact-section'>Contact us</a> for details.</p>
+<p>The BlockMarkets websocket delivers real-time streaming data to your application. A premium subscription is required for this service. See our <a href='https://www.blockmarkets.io/api'>API Plans</a> for details.</p>
 <h2 id='authentication-2'>Authentication</h2>
 <blockquote>
 <p>Respone Example</p>
@@ -1086,50 +1256,52 @@ You must replace <code>&lt;client-api-key&gt;</code> with your assigned API key.
 <p><code>{ &quot;action&quot;: &quot;authenticate&quot;, &quot;token&quot;: &quot;&lt;client-api-key&gt;&quot; }</code></p>
 <h2 id='subscribe'>Subscribe</h2>
 <blockquote>
-<p>Response Example (Price Index)</p>
+<p>Response Example (Spot Rate)</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8277.99</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11T18:42.44.895Z"</span><span class="w">  
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6381.3241</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T22:43:42.513Z"</span><span class="w">  
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Response Example (Asset/Exchange Pair)</p>
+<p>Response Example (Market Pair)</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"pair_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XLMBTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"exchange_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNCE"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000045</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11T19:02.15.343Z"</span><span class="w">  
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPRO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6350.01</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00438907</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-02T22:44:31.555Z"</span><span class="w">  
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Clients can subscribe to receive real-time spot rates from our price indexes, and real-time transaction information (i.e. trades) for an asset pair from one or all exchanges. Please note that each subscribe request overwrites the previous subscribe request. Here are some examples.</p>
+<p>Clients can subscribe to receive real-time spot rates, and real-time trades from exchanges. Please note that each subscribe request overwrites the previous subscribe request. Here are some examples.</p>
 
-<p><strong>Price index spot rates</strong></p>
+<p><strong>USD Spot Rates</strong></p>
 
-<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;XBTC&quot;, &quot;XXLM&quot; ] }</code></p>
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTC&quot;, &quot;XLM&quot;, &quot;ETH&quot; ] }</code></p>
 
-<p><strong>Asset pair trades from all exchanges</strong></p>
+<p><strong>Market trades from all exchanges</strong></p>
 
-<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTCUSD&quot;, &quot;XLMBTC&quot; ] }</code></p>
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTC-USD&quot;, &quot;XLM-BTC&quot; ] }</code></p>
 
-<p><strong>Exchange pair trades</strong></p>
+<p><strong>Market pair trades</strong></p>
 
-<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;GDAX:BTCUSD&quot;, &quot;KRKN:ZECUSD&quot; ] }</code></p>
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;CPRO:BTC-USD&quot;, &quot;KRKN:ZEC-USD&quot; ] }</code></p>
 
 <p><strong>Multiple channels</strong></p>
 
-<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTCUSD&quot;, &quot;XXLM&quot;, &quot;GDAX:ETHUSD&quot; ] }</code></p>
+<p><code>{ &quot;action&quot;: &quot;subscribe&quot;, &quot;channels&quot;: [&quot;BTC-USD&quot;, &quot;XLM&quot;, &quot;CPRO:ETH-USD&quot; ] }</code></p>
 <h2 id='unsubscribe'>Unsubscribe</h2>
 <p>To unsubscribe from a product, send a new subscribe request excluding the product you wish to unsubscribe from. </p>
 <h1 id='errors'>Errors</h1>
